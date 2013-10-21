@@ -15,16 +15,23 @@ using AssemblyCSharp;
 
 public class scene1_controller : MonoBehaviour 
 {
+	//Your API KEY
 	public string apiKey = "b29f4030aba3b2bc7002c4eae6815a4130c862c386e43ae2a0a092b27de1c5af";
+	//Your SECRET Key
 	public string secretKey = "bf45f27e826039754f8dda659166d59ffb7b9dce830ac51d6e6b576ae4b26f7e";
+	//Room ID
 	public string roomid = "1440375425";
 	public static string username = "";
 	
+	//This is the listener that will be listening to the notifications/responses for Scene 1
 	scene1_listener listen;
 	
 	void Start () {
+		//Initialise the WarpClient with API KEY and SECRET KEY.
 		WarpClient.initialize(apiKey,secretKey);
 		listen = GetComponent<scene1_listener>();
+		//WarpClient is a singleton Class, always use GetInstance() to access the singeton object of WarpClient
+		//Add the listeners to the WarpClient. We only need Connection, Room, Notification and Chat Listeners for this sample
 		WarpClient.GetInstance().AddConnectionRequestListener(listen);
 		WarpClient.GetInstance().AddChatRequestListener(listen);
 		WarpClient.GetInstance().AddNotificationListener(listen);
@@ -32,6 +39,7 @@ public class scene1_controller : MonoBehaviour
 		
 		// join with a unique name (current time stamp)
 		username = System.DateTime.UtcNow.Ticks.ToString();
+		//Connect to the AppWarp Server 
 		WarpClient.GetInstance().Connect(username);
 		
 		//EditorApplication.playmodeStateChanged += OnEditorStateChanged;
@@ -44,7 +52,7 @@ public class scene1_controller : MonoBehaviour
 		timer -= Time.deltaTime;
 		if(timer < 0)
 		{
-	
+			//Sending a dummy message
 			listen.sendMsg("Scene 1 : " + System.DateTime.UtcNow.ToString());
 			
 			timer = interval;
@@ -58,11 +66,16 @@ public class scene1_controller : MonoBehaviour
 	
 	void OnGUI()
 	{
+		//Print the Log on screen
 		GUI.contentColor = Color.black;
 		GUI.Label(new Rect(10,10,500,500), listen.getDebug());
 	}
 	
-	void OnDestroy() {
+	void OnDestroy() 
+	{
+		//When you will switch to another scene, current scene will be destroyed.
+		//In new scene you will be adding new listeners, making the listeners of this scene
+		//useless, so you must remove the listeners from current scene on destruction
         WarpClient.GetInstance().RemoveConnectionRequestListener(listen);
 		WarpClient.GetInstance().RemoveNotificationListener(listen);
 		WarpClient.GetInstance().RemoveRoomRequestListener(listen);
@@ -79,6 +92,7 @@ public class scene1_controller : MonoBehaviour
 	
 	void OnApplicationQuit()
 	{
+		//Disconnect from the server when the game is closed
 		WarpClient.GetInstance().Disconnect();
 	}
 	
