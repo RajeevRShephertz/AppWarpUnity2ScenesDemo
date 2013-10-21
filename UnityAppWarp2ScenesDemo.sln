@@ -1,7 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-Project("{991768C1-CD4F-6B74-31D9-0E121667BB18}") = "Unity-AppWarpScenesTest", "Assembly-CSharp-vs.csproj", "{B49ECCB5-A78A-2C6C-A4C7-8DB1C02A19C1}"
+Project("{31CFCA14-6F94-26FF-53C4-4AC321D0A547}") = "UnityAppWarp2ScenesDemo", "Assembly-CSharp.csproj", "{6A6B5821-CD7B-DCF3-B64F-C87AD4B7F71C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +9,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B49ECCB5-A78A-2C6C-A4C7-8DB1C02A19C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B49ECCB5-A78A-2C6C-A4C7-8DB1C02A19C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B49ECCB5-A78A-2C6C-A4C7-8DB1C02A19C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B49ECCB5-A78A-2C6C-A4C7-8DB1C02A19C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A6B5821-CD7B-DCF3-B64F-C87AD4B7F71C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A6B5821-CD7B-DCF3-B64F-C87AD4B7F71C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A6B5821-CD7B-DCF3-B64F-C87AD4B7F71C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A6B5821-CD7B-DCF3-B64F-C87AD4B7F71C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-											GlobalSection(MonoDevelopProperties) = preSolution
+		GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

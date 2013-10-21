@@ -62,6 +62,13 @@ public class scene1_controller : MonoBehaviour
 		GUI.Label(new Rect(10,10,500,500), listen.getDebug());
 	}
 	
+	void OnDestroy() {
+        WarpClient.GetInstance().RemoveConnectionRequestListener(listen);
+		WarpClient.GetInstance().RemoveNotificationListener(listen);
+		WarpClient.GetInstance().RemoveRoomRequestListener(listen);
+		WarpClient.GetInstance().RemoveChatRequestListener(listen);
+    }
+	
 	/*void OnEditorStateChanged()
 	{
     	if(EditorApplication.isPlaying == false) 
