@@ -12,11 +12,10 @@ using System.Collections.Generic;
 
 namespace AssemblyCSharp
 {
-	public class scene2_listener : MonoBehaviour, ChatRequestListener, NotifyListener,ConnectionRequestListener
+	public class scene2_listener : MonoBehaviour, ChatRequestListener, NotifyListener
 	{
 		string debug = "";
-		string roomId = "1258637180";
-
+		
 		private scene2_controller m_apppwarp;
 		
 		private void Log(string msg)
@@ -36,26 +35,7 @@ namespace AssemblyCSharp
 		{
 			m_apppwarp = GetComponent<scene2_controller>();
 		}
-
-		//ConnectionRequestListener
-		public void onConnectDone(ConnectEvent eventObj)
-		{
-			if(eventObj.getResult() == 0)
-			{
-				WarpClient.GetInstance().SubscribeRoom(roomId);
-			}
-			Log ("onConnectDone : " + eventObj.getResult()+" "+roomId);
-
-			gameObject.name = scene1_controller.username;
-			WarpClient.GetInstance().initUDP();
-		}
-
-		public void onDisconnectDone(ConnectEvent eventObj)
-		{
-			Log("onDisconnectDone : " + eventObj.getResult());
-		}
-
-
+		
 		public void onLog(String message){
 			Log (message);
 		}
@@ -129,7 +109,34 @@ namespace AssemblyCSharp
 			Log ("onUpdatePeersReceived");
 			//Log("isUDP " + eventObj.getIsUdp());
 		}
-		
+
+
+		public void onUserPaused(String locid, Boolean isLobby, String username)
+		{
+		}
+
+		public void onUserResumed(String locid, Boolean isLobby, String username)
+		{
+		}
+
+		public void onGameStarted(string sender, string roomId, string nextTurn)
+		{
+		}
+
+		public void onGameStopped(string sender, string roomId)
+		{
+		}
+
+		public void onPrivateUpdateReceived(String sender, byte[] update, bool fromUdp)
+		{
+
+		}
+
+		public void onNextTurnRequest(String lastTurn)
+		{
+
+		}
+
 		public void onUserChangeRoomProperty(RoomData roomData, string sender, Dictionary<String, System.Object> properties)
         {
             Log("Notification for User Changed Room Property received");

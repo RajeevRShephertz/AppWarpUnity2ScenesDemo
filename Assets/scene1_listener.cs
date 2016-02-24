@@ -16,7 +16,6 @@ namespace AssemblyCSharp
 	{
 		int state = 0;
 		string debug = "";
-		string roomId = "1258637180";
 		
 		private scene1_controller m_apppwarp;
 		
@@ -43,9 +42,9 @@ namespace AssemblyCSharp
 		{
 			if(eventObj.getResult() == 0)
 			{
-				WarpClient.GetInstance().SubscribeRoom(roomId);
+				WarpClient.GetInstance().SubscribeRoom(m_apppwarp.roomid);
 			}
-			Log ("onConnectDone : " + eventObj.getResult()+" "+roomId);
+			Log ("onConnectDone : " + eventObj.getResult());
 			
 			gameObject.name = scene1_controller.username;
 			WarpClient.GetInstance().initUDP();
@@ -59,6 +58,10 @@ namespace AssemblyCSharp
 		{
 			Log("onDisconnectDone : " + eventObj.getResult());
 		}
+
+		public void onInitUDPDone (byte resultCode){
+		}
+
 	
 		//RoomRequestListener
 		public void onSubscribeRoomDone (RoomEvent eventObj)
@@ -68,7 +71,7 @@ namespace AssemblyCSharp
 				/*string json = "{\"start\":\""+id+"\"}";
 				WarpClient.GetInstance().SendChat(json);
 				state = 1;*/
-				WarpClient.GetInstance().JoinRoom(roomId);
+				WarpClient.GetInstance().JoinRoom(m_apppwarp.roomid);
 			}
 			
 			Log ("onSubscribeRoomDone : " + eventObj.getResult());
@@ -86,6 +89,7 @@ namespace AssemblyCSharp
 				state = 1;
 			}
 			Log ("onJoinRoomDone : " + eventObj.getResult());
+			
 		}
 		
 		public void onLockPropertiesDone(byte result)
@@ -206,6 +210,32 @@ namespace AssemblyCSharp
                 Log("VALUE:" + entry.Value.ToString());
             }
         }
+
+		public void onUserPaused(String locid, Boolean isLobby, String username)
+		{
+		}
+
+		public void onUserResumed(String locid, Boolean isLobby, String username)
+		{
+		}
+
+		public void onGameStarted(string sender, string roomId, string nextTurn)
+		{
+		}
+
+		public void onGameStopped(string sender, string roomId)
+		{
+		}
+
+		public void onPrivateUpdateReceived(String sender, byte[] update, bool fromUdp)
+		{
+
+		}
+
+		public void onNextTurnRequest(String lastTurn)
+		{
+
+		}
 	
 		public void sendMsg(string msg)
 		{
