@@ -16,6 +16,7 @@ namespace AssemblyCSharp
 	{
 		int state = 0;
 		string debug = "";
+		string roomId = "1258637180";
 		
 		private scene1_controller m_apppwarp;
 		
@@ -42,9 +43,9 @@ namespace AssemblyCSharp
 		{
 			if(eventObj.getResult() == 0)
 			{
-				WarpClient.GetInstance().SubscribeRoom(m_apppwarp.roomid);
+				WarpClient.GetInstance().SubscribeRoom(roomId);
 			}
-			Log ("onConnectDone : " + eventObj.getResult());
+			Log ("onConnectDone : " + eventObj.getResult()+" "+roomId);
 			
 			gameObject.name = scene1_controller.username;
 			WarpClient.GetInstance().initUDP();
@@ -67,7 +68,7 @@ namespace AssemblyCSharp
 				/*string json = "{\"start\":\""+id+"\"}";
 				WarpClient.GetInstance().SendChat(json);
 				state = 1;*/
-				WarpClient.GetInstance().JoinRoom(m_apppwarp.roomid);
+				WarpClient.GetInstance().JoinRoom(roomId);
 			}
 			
 			Log ("onSubscribeRoomDone : " + eventObj.getResult());
@@ -85,7 +86,6 @@ namespace AssemblyCSharp
 				state = 1;
 			}
 			Log ("onJoinRoomDone : " + eventObj.getResult());
-			
 		}
 		
 		public void onLockPropertiesDone(byte result)

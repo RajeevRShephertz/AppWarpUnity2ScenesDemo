@@ -12,10 +12,11 @@ using System.Collections.Generic;
 
 namespace AssemblyCSharp
 {
-	public class scene2_listener : MonoBehaviour, ChatRequestListener, NotifyListener
+	public class scene2_listener : MonoBehaviour, ChatRequestListener, NotifyListener,ConnectionRequestListener
 	{
 		string debug = "";
-		
+		string roomId = "1258637180";
+
 		private scene2_controller m_apppwarp;
 		
 		private void Log(string msg)
@@ -35,7 +36,26 @@ namespace AssemblyCSharp
 		{
 			m_apppwarp = GetComponent<scene2_controller>();
 		}
-		
+
+		//ConnectionRequestListener
+		public void onConnectDone(ConnectEvent eventObj)
+		{
+			if(eventObj.getResult() == 0)
+			{
+				WarpClient.GetInstance().SubscribeRoom(roomId);
+			}
+			Log ("onConnectDone : " + eventObj.getResult()+" "+roomId);
+
+			gameObject.name = scene1_controller.username;
+			WarpClient.GetInstance().initUDP();
+		}
+
+		public void onDisconnectDone(ConnectEvent eventObj)
+		{
+			Log("onDisconnectDone : " + eventObj.getResult());
+		}
+
+
 		public void onLog(String message){
 			Log (message);
 		}

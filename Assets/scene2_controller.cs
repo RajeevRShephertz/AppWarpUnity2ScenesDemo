@@ -23,6 +23,7 @@ public class scene2_controller : MonoBehaviour
 		//or call the connect function. Simply add the required listeners
 		//We only need chat and notification listeners for scene 2
 		listen = GetComponent<scene2_listener>();
+		WarpClient.GetInstance().AddConnectionRequestListener(listen);
 		WarpClient.GetInstance().AddChatRequestListener(listen);
 		WarpClient.GetInstance().AddNotificationListener(listen);
 		
@@ -72,12 +73,14 @@ public class scene2_controller : MonoBehaviour
 	
 	void OnApplicationQuit()
 	{
+		Debug.Log("OnApplicationQuit ..... Called");
 		//Disconnect from server on quit
 		WarpClient.GetInstance().Disconnect();
 	}
 	
 	public void onMsg(string sender, string msg)
 	{
+		Debug.Log("onMsg ..... Called");
 		/*
 		if(sender != username)
 		{

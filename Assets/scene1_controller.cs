@@ -16,11 +16,11 @@ using AssemblyCSharp;
 public class scene1_controller : MonoBehaviour 
 {
 	//Your API KEY
-	public string apiKey = "b29f4030aba3b2bc7002c4eae6815a4130c862c386e43ae2a0a092b27de1c5af";
+	public string apiKey = "cad2bfab6310acd9696187b98682925125e469ab0d0d585db0b00609f461b791";
 	//Your SECRET Key
-	public string secretKey = "bf45f27e826039754f8dda659166d59ffb7b9dce830ac51d6e6b576ae4b26f7e";
+	public string secretKey = "55811709916e7ce4405cde0cdc5a254cf4b506fbafdae05760a73100b8080b67";
 	//Room ID
-	public string roomid = "1440375425";
+	public string roomid = "1258637180";
 	public static string username = "";
 	
 	//This is the listener that will be listening to the notifications/responses for Scene 1
@@ -28,7 +28,7 @@ public class scene1_controller : MonoBehaviour
 	
 	void Start () {
 		//Initialise the WarpClient with API KEY and SECRET KEY.
-		WarpClient.initialize(apiKey,secretKey);
+		WarpClient.initialize("cad2bfab6310acd9696187b98682925125e469ab0d0d585db0b00609f461b791","55811709916e7ce4405cde0cdc5a254cf4b506fbafdae05760a73100b8080b67");
 		listen = GetComponent<scene1_listener>();
 		//WarpClient is a singleton Class, always use GetInstance() to access the singeton object of WarpClient
 		//Add the listeners to the WarpClient. We only need Connection, Room, Notification and Chat Listeners for this sample
@@ -93,11 +93,13 @@ public class scene1_controller : MonoBehaviour
 	void OnApplicationQuit()
 	{
 		//Disconnect from the server when the game is closed
+		Debug.Log("OnApplicationQuit ..... Called");
 		WarpClient.GetInstance().Disconnect();
 	}
 	
 	public void onMsg(string sender, string msg)
 	{
+		Debug.Log("onMsg ..... Called");
 		/*
 		if(sender != username)
 		{
